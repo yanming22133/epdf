@@ -1,0 +1,1 @@
+{"error": "PdfMerger.merge_simple() missing 1 required positional argument: 'output_path'"}
