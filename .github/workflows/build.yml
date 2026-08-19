@@ -91,7 +91,13 @@ jobs:
       - name: Zip app
         run: |
           cd dist
-          zip -r ePDF-Mac.zip ePDF.app
+          ls -la
+          app_name=$(ls -d *.app 2>/dev/null | head -1)
+          if [ -z "$app_name" ]; then
+            app_name=$(ls -d mac-*/ePDF.app 2>/dev/null | head -1)
+          fi
+          echo "Found app: $app_name"
+          zip -r ePDF-Mac.zip "$app_name"
           
       - name: Upload Mac artifact
         uses: actions/upload-artifact@v4
